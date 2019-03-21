@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1320px;
+            height: 903px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/TiptoFareRatioMedianValue_1.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[40.63165926748066,-74.11247918978866],[40.88165926748066,-73.74677441731363]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            opacity: 1.0,
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+        });
+        layer_OSMStandard_0;
+        map.addLayer(layer_OSMStandard_0);
+        function pop_TiptoFareRatioMedianValue_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><b>Count of Rides: </b>' + (feature.properties['tip_fare_c'] !== null ? Autolinker.link(String(feature.properties['tip_fare_c'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><b>Median Tip to Fare Ratio </b>' + (feature.properties['tip_fare_3'] !== null ? Autolinker.link(String(feature.properties['tip_fare_3'])) : '') + '</td>\
+                    </tr>\
+                            </table>';
+            layer.bindPopup(popupContent, {maxHeight: 600});
+        }
+
+        function style_TiptoFareRatioMedianValue_1_0(feature) {
+            if (feature.properties['tip_fare_3'] >= 0.000000 && feature.properties['tip_fare_3'] <= 0.030303 ) {
+                return {
+                pane: 'pane_TiptoFareRatioMedianValue_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.6,
+                fillColor: 'rgba(247,251,255,1.0)',
+            }
+            }
+            if (feature.properties['tip_fare_3'] >= 0.030303 && feature.properties['tip_fare_3'] <= 0.096154 ) {
+                return {
+                pane: 'pane_TiptoFareRatioMedianValue_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.6,
+                fillColor: 'rgba(200,221,240,1.0)',
+            }
+            }
+            if (feature.properties['tip_fare_3'] >= 0.096154 && feature.properties['tip_fare_3'] <= 0.145671 ) {
+                return {
+                pane: 'pane_TiptoFareRatioMedianValue_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.6,
+                fillColor: 'rgba(115,179,216,1.0)',
+            }
+            }
+            if (feature.properties['tip_fare_3'] >= 0.145671 && feature.properties['tip_fare_3'] <= 0.184659 ) {
+                return {
+                pane: 'pane_TiptoFareRatioMedianValue_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.6,
+                fillColor: 'rgba(40,121,185,1.0)',
+            }
+            }
+            if (feature.properties['tip_fare_3'] >= 0.184659 && feature.properties['tip_fare_3'] <= 0.232715 ) {
+                return {
+                pane: 'pane_TiptoFareRatioMedianValue_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.6,
+                fillColor: 'rgba(8,48,107,1.0)',
+            }
+            }
+        }
+        map.createPane('pane_TiptoFareRatioMedianValue_1');
+        map.getPane('pane_TiptoFareRatioMedianValue_1').style.zIndex = 401;
+        map.getPane('pane_TiptoFareRatioMedianValue_1').style['mix-blend-mode'] = 'normal';
+        var layer_TiptoFareRatioMedianValue_1 = new L.geoJson(json_TiptoFareRatioMedianValue_1, {
+            attribution: '',
+            pane: 'pane_TiptoFareRatioMedianValue_1',
+            onEachFeature: pop_TiptoFareRatioMedianValue_1,
+            style: style_TiptoFareRatioMedianValue_1_0,
+        });
+        bounds_group.addLayer(layer_TiptoFareRatioMedianValue_1);
+        map.addLayer(layer_TiptoFareRatioMedianValue_1);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Tip to Fare Ratio Median Value<br /><table><tr><td style="text-align: center;"><img src="legend/TiptoFareRatioMedianValue_1_0000030.png" /></td><td> 0.00 - 0.03 </td></tr><tr><td style="text-align: center;"><img src="legend/TiptoFareRatioMedianValue_1_0030101.png" /></td><td> 0.03 - 0.10 </td></tr><tr><td style="text-align: center;"><img src="legend/TiptoFareRatioMedianValue_1_0100152.png" /></td><td> 0.10 - 0.15 </td></tr><tr><td style="text-align: center;"><img src="legend/TiptoFareRatioMedianValue_1_0150183.png" /></td><td> 0.15 - 0.18 </td></tr><tr><td style="text-align: center;"><img src="legend/TiptoFareRatioMedianValue_1_0180234.png" /></td><td> 0.18 - 0.23 </td></tr></table>': layer_TiptoFareRatioMedianValue_1,"OSM Standard": layer_OSMStandard_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
